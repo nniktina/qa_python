@@ -49,3 +49,10 @@ class TestBooksCollector:
         collector.add_new_book('Котенок по имени Гав')
         collector.add_book_in_favorites('Котенок по имени Гав')
         assert 'Котенок по имени Гав' in collector.favorites
+
+    def test_delete_book_from_favorites_delete_one(self):
+        collector = BooksCollector()
+        if 'Дюна' not in collector.favorites:
+            collector.favorites.append('Дюна')
+            collector.delete_book_from_favorites('Дюна')
+        assert 'Дюна' not in collector.favorites
