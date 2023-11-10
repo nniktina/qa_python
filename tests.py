@@ -44,4 +44,8 @@ class TestBooksCollector:
         collector.set_book_genre('Пятый элемент', 'Фантастика')
         assert collector.get_books_genre() == {'Десять негритят':'Детективы', 'Пятый элемент':'Фантастика'}
 
-
+    def test_add_book_in_favorites_add_one_book(self):
+        collector = BooksCollector()
+        collector.add_new_book('Котенок по имени Гав')
+        collector.add_book_in_favorites('Котенок по имени Гав')
+        assert 'Котенок по имени Гав' in collector.favorites
