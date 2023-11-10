@@ -13,4 +13,8 @@ class TestBooksCollector:
         collector.add_new_book('Гордость и предубеждение и зомби')
         assert collector.books_genre.get('Гордость и предубеждение и зомби') == ''
 
-
+    def test_set_book_genre_set_cartoon(self):
+        collector = BooksCollector()
+        collector.add_new_book('Жил-был пёс')
+        collector.set_book_genre('Жил-был пёс', 'Мультфильмы')
+        assert collector.books_genre['Жил-был пёс'] == 'Мультфильмы'
