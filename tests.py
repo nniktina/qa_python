@@ -26,4 +26,22 @@ class TestBooksCollector:
         collector.set_book_genre('Один дома', 'Комедии')
         assert collector.get_book_genre('Один дома') == 'Комедии'
 
+    def test_get_books_with_specific_genre_get_cartoons(self):
+        collector = BooksCollector()
+        collector.add_new_book('Жил-был пёс')
+        collector.add_new_book('Том и Джерри')
+        collector.add_new_book('Пятый элемент')
+        collector.set_book_genre('Жил-был пёс', 'Мультфильмы')
+        collector.set_book_genre('Том и Джерри', 'Мультфильмы')
+        collector.set_book_genre('Дюна', 'Фантастика')
+        assert collector.get_books_with_specific_genre('Мультфильмы') == ['Жил-был пёс', 'Том и Джерри']
+
+    def test_get_books_genre_get_two_books(self):
+        collector = BooksCollector()
+        collector.add_new_book('Десять негритят')
+        collector.add_new_book('Пятый элемент')
+        collector.set_book_genre('Десять негритят', 'Детективы')
+        collector.set_book_genre('Пятый элемент', 'Фантастика')
+        assert collector.get_books_genre() == {'Десять негритят':'Детективы', 'Пятый элемент':'Фантастика'}
+
 
