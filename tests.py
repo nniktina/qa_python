@@ -56,3 +56,12 @@ class TestBooksCollector:
             collector.favorites.append('Дюна')
             collector.delete_book_from_favorites('Дюна')
         assert 'Дюна' not in collector.favorites
+
+    def test_get_list_of_favorites_books_list_of_two(self):
+        collector = BooksCollector()
+        collector.add_new_book('Гарри Поттер и философский камень')
+        collector.add_new_book('Гарри Поттер и тайная комната')
+        collector.add_book_in_favorites('Гарри Поттер и философский камень')
+        collector.add_book_in_favorites('Гарри Поттер и тайная комната')
+        assert collector.get_list_of_favorites_books() == ['Гарри Поттер и философский камень','Гарри Поттер и тайная комната']
+
