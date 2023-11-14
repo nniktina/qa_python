@@ -1,13 +1,11 @@
 from main import BooksCollector
-import pytest
 
 class TestBooksCollector:
 
-    def test_add_new_book_add_two_books(self):
+    def test_add_new_book_add_one_book(self):
         collector = BooksCollector()
-        collector.add_new_book('Гордость и предубеждение и зомби')
-        collector.add_new_book('Что делать, если ваш кот хочет вас убить')
-        assert len(collector.books_genre.keys()) == 2
+        collector.add_new_book('Биба')
+        assert 'Биба' in collector.books_genre
 
     def test_add_new_book_added_book_has_no_genre_true(self):
         collector = BooksCollector()
