@@ -20,29 +20,33 @@ class TestBooksCollector:
         collector.set_book_genre('Жил-был пёс', 'Мультфильмы')
         assert collector.books_genre['Жил-был пёс'] == 'Мультфильмы'
 
-    def test_get_book_genre_check_comedy(self):
+    def test_get_book_genre_check_comedy(self, fill_books_genre):
         collector = BooksCollector()
-        collector.add_new_book('Один дома')
-        collector.set_book_genre('Один дома', 'Комедии')
+        collector.books_genre.update(fill_books_genre)
         assert collector.get_book_genre('Один дома') == 'Комедии'
 
-    def test_get_books_with_specific_genre_get_cartoons(self):
+    def test_get_books_with_specific_genre_get_cartoons(self, fill_books_genre):
         collector = BooksCollector()
-        collector.add_new_book('Жил-был пёс')
-        collector.add_new_book('Том и Джерри')
-        collector.add_new_book('Пятый элемент')
-        collector.set_book_genre('Жил-был пёс', 'Мультфильмы')
-        collector.set_book_genre('Том и Джерри', 'Мультфильмы')
-        collector.set_book_genre('Дюна', 'Фантастика')
-        assert collector.get_books_with_specific_genre('Мультфильмы') == ['Жил-был пёс', 'Том и Джерри']
+        collector.books_genre.update(fill_books_genre)
+        assert collector.get_books_with_specific_genre('Мультфильмы') == ['Жил-был пёс', 'Колобок']
 
-    def test_get_books_genre_get_two_books(self):
+    def test_get_books_genre_get_two_books(self, fill_books_genre):
         collector = BooksCollector()
-        collector.add_new_book('Десять негритят')
-        collector.add_new_book('Пятый элемент')
-        collector.set_book_genre('Десять негритят', 'Детективы')
-        collector.set_book_genre('Пятый элемент', 'Фантастика')
-        assert collector.get_books_genre() == {'Десять негритят':'Детективы', 'Пятый элемент':'Фантастика'}
+        collector.books_genre.update(fill_books_genre)
+        assert collector.get_books_genre() == {
+        'Жил-был пёс': 'Мультфильмы',
+        'Властелин колец': 'Фантастика',
+        'Десять негритят': 'Детективы',
+        'Колобок': 'Мультфильмы',
+        'Один дома': 'Комедии',
+        'Оно': 'Ужасы'
+    }
+
+    def test_get_books_for_children_return_four(self, fill_books_genre):
+        collector = BooksCollector()
+        collector.books_genre.update(fill_books_genre)
+        assert collector.get_books_for_children() == ['Жил-был пёс', 'Властелин колец', 'Колобок', 'Один дома']
+
 
     def test_add_book_in_favorites_add_one_book(self):
         collector = BooksCollector()
@@ -63,5 +67,4 @@ class TestBooksCollector:
         collector.add_new_book('Гарри Поттер и тайная комната')
         collector.add_book_in_favorites('Гарри Поттер и философский камень')
         collector.add_book_in_favorites('Гарри Поттер и тайная комната')
-        assert collector.get_list_of_favorites_books() == ['Гарри Поттер и философский камень','Гарри Поттер и тайная комната']
-
+        assert collector.get_list_of_favorites_books() == ['Гарри Поттер и философский камень', 'Гарри Поттер и тайная комната']
