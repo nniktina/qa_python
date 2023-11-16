@@ -11,13 +11,13 @@ class TestBooksCollector:
     def test_add_new_book_added_book_has_no_genre_true(self):
         collector = BooksCollector()
         collector.add_new_book('Гордость и предубеждение и зомби')
-        assert list(collector.books_genre.values()) == ['']
+        assert collector.get_book_genre('Гордость и предубеждение и зомби') == ''
 
     def test_set_book_genre_set_cartoon(self):
         collector = BooksCollector()
         collector.add_new_book('Жил-был пёс')
         collector.set_book_genre('Жил-был пёс', 'Мультфильмы')
-        assert list(collector.books_genre.values()) == ['Мультфильмы']
+        assert collector.get_book_genre('Жил-был пёс') == 'Мультфильмы'
 
     def test_get_book_genre_get_comedy(self, fill_books_genre):
         collector = BooksCollector()
