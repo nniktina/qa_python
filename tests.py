@@ -20,19 +20,13 @@ class TestBooksCollector:
         assert collector.get_book_genre('Жил-был пёс') == 'Мультфильмы'
 
     def test_get_book_genre_get_comedy(self, fill_books_genre):
-        collector = BooksCollector()
-        collector.books_genre.update(fill_books_genre)
-        assert collector.get_book_genre('Один дома') == 'Комедии'
+        assert fill_books_genre.get_book_genre('Один дома') == 'Комедии'
 
     def test_get_books_with_specific_genre_get_two_cartoons(self, fill_books_genre):
-        collector = BooksCollector()
-        collector.books_genre.update(fill_books_genre)
-        assert collector.get_books_with_specific_genre('Мультфильмы') == ['Жил-был пёс', 'Колобок']
+        assert fill_books_genre.get_books_with_specific_genre('Мультфильмы') == ['Жил-был пёс', 'Колобок']
 
     def test_get_books_genre_get_all_dictionary(self, fill_books_genre):
-        collector = BooksCollector()
-        collector.books_genre.update(fill_books_genre)
-        assert collector.get_books_genre() == {
+        assert fill_books_genre.get_books_genre() == {
         'Жил-был пёс': 'Мультфильмы',
         'Властелин колец': 'Фантастика',
         'Десять негритят': 'Детективы',
@@ -42,9 +36,7 @@ class TestBooksCollector:
     }
 
     def test_get_books_for_children_return_four(self, fill_books_genre):
-        collector = BooksCollector()
-        collector.books_genre.update(fill_books_genre)
-        assert collector.get_books_for_children() == ['Жил-был пёс', 'Властелин колец', 'Колобок', 'Один дома']
+        assert fill_books_genre.get_books_for_children() == ['Жил-был пёс', 'Властелин колец', 'Колобок', 'Один дома']
 
     def test_add_book_in_favorites_add_one_book(self):
         collector = BooksCollector()
