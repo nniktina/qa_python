@@ -57,7 +57,7 @@ class TestBooksCollector:
         collector.favorites.append('Дюна')
         collector.favorites.append('Игра престолов')
         collector.delete_book_from_favorites('Дюна')
-        assert len(collector.favorites) == 1
+        assert len(collector.get_list_of_favorites_books()) == 1
 
     def test_get_list_of_favorites_books_list_of_two_books(self):
         collector = BooksCollector()
