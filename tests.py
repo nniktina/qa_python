@@ -54,10 +54,10 @@ class TestBooksCollector:
 
     def test_delete_book_from_favorites_delete_one(self):
         collector = BooksCollector()
-        collector.favorites.append('Дюна')
-        collector.favorites.append('Игра престолов')
+        collector.add_new_book('Дюна')
+        collector.add_book_in_favorites('Дюна')
         collector.delete_book_from_favorites('Дюна')
-        assert len(collector.get_list_of_favorites_books()) == 1
+        assert len(collector.get_list_of_favorites_books()) == 0
 
     def test_get_list_of_favorites_books_list_of_two_books(self):
         collector = BooksCollector()
